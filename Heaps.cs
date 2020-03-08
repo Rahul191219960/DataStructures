@@ -8,7 +8,7 @@ namespace Heaps
     {
         private void Max_Heapify(T myEmp, int index)
         {
-            if (index >= myEmp.Length)
+            if (index >= myEmp.Length || index < 0)
             {
                 throw new IndexOutOfRangeException("Index out of bound");
             }

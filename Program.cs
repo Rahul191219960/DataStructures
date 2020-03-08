@@ -14,14 +14,13 @@ namespace DataStructures
             {
                 Employee temp = new Employee();
                 temp.EmpId = i + 1;
-                temp.EmployeeName = i.ToString() + "EMP";
+                temp.EmployeeName = (i + 1).ToString() + "EMP";
                 emp.Add(temp);
             }
             Employees employees = new Employees(10, emp);
-            Heaps<Employees> heap = new Heaps<Employees>();
-            Employees heapOfEMp = heap.Build_MaxHeap(employees);
-            Employee max = heap.Extract_Max(heapOfEMp);
-            Console.WriteLine("EMmployee id = {0} and Employee Name = {1} ",max.EmpId,max.EmployeeName);
+            MaxHeaps<Employees> heap = new MaxHeaps<Employees>(employees);
+            Employee max = heap.Extract_Max();
+            Console.WriteLine("EMmployee id = {0} and Employee Name = {1} ", max.EmpId, max.EmployeeName);
         }
     }
 }

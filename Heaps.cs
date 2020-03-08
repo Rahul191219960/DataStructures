@@ -4,8 +4,13 @@ using System.Collections.Generic;
 namespace Heaps
 {
     using EmployeeN;
-    public class Heaps<T> where T : Employees
+    public class MaxHeaps<T> where T : Employees
     {
+        public MaxHeaps(T myEmp)
+        {
+            this._Data = Build_MaxHeap(myEmp);
+        }
+        private T _Data { get; set; }
         private void Max_Heapify(T myEmp, int index)
         {
             if (index >= myEmp.Length || index < 0)
@@ -37,7 +42,7 @@ namespace Heaps
                         myEmp[index * 2 + 2] = myEmp[index];
                         myEmp[index] = temp;
                     }
-                    Max_Heapify(myEmp,Largest);
+                    Max_Heapify(myEmp, Largest);
                 }
                 else if ((index * 2 + 1) < myEmp.Length && myEmp[index] < myEmp[index * 2 + 1]) // only left child is present
                 {
@@ -52,7 +57,7 @@ namespace Heaps
         }
 
 
-        public T Build_MaxHeap(T myEmp)
+        private T Build_MaxHeap(T myEmp)
         {
             for (int i = myEmp.Length / 2; i >= 0; i--)
             {
@@ -61,9 +66,9 @@ namespace Heaps
             return myEmp;
         }
 
-        public Employee Extract_Max(T myEmp)
+        public Employee Extract_Max()
         {
-            return myEmp[0];
+            return this._Data.EmployeeList[0];
         }
     }
 }

@@ -1,3 +1,4 @@
+
 using System;
 using DataStructures;
 using System.Collections.Generic;
@@ -11,22 +12,22 @@ namespace Heaps
             this._Data = Build_MaxHeap(myEmp);
         }
         private T _Data { get; set; }
-        private void Max_Heapify(T myEmp, int index)
+        private void Max_Heapify(T myEmp, int index, int Length)
         {
-            if (index >= myEmp.Length || index < 0)
+            if (index >= Length || index < 0)
             {
                 throw new IndexOutOfRangeException("Index out of bound");
             }
-            else
+            else if ((((index * 2) + 2) < Length &&  myEmp[index] < myEmp[index * 2 + 2] ) || (((index * 2 + 1) < Length) && myEmp[index] < myEmp[index * 2 + 1]))
             {
-                if (((index * 2) + 2) < myEmp.Length)  // right child is present
+                if (((index * 2) + 2) < Length)  // right child is present
                 {
                     Employee right = new Employee();
                     Employee left = new Employee();
                     // Employee largest = new Employee();
-                    int Largest;
+                    int Largest ;
 
-                    if (myEmp[index * 2 + 2] < myEmp[index * 2 + 1])
+                    if (myEmp[index * 2 + 2] < myEmp[index * 2 + 1] )
                     {
                         Largest = index * 2 + 1;
                         Employee temp = new Employee();
@@ -34,7 +35,7 @@ namespace Heaps
                         myEmp[index * 2 + 1] = myEmp[index];
                         myEmp[index] = temp;
                     }
-                    else
+                    else 
                     {
                         Largest = index * 2 + 2;
                         Employee temp = new Employee();
@@ -42,9 +43,9 @@ namespace Heaps
                         myEmp[index * 2 + 2] = myEmp[index];
                         myEmp[index] = temp;
                     }
-                    Max_Heapify(myEmp, Largest);
+                    Max_Heapify(myEmp, Largest, Length);
                 }
-                else if ((index * 2 + 1) < myEmp.Length && myEmp[index] < myEmp[index * 2 + 1]) // only left child is present
+                else if ((index * 2 + 1) < Length && myEmp[index] < myEmp[index * 2 + 1]) // only left child is present
                 {
                     Employee left = new Employee();
                     left = myEmp[index * 2 + 1];
@@ -61,7 +62,7 @@ namespace Heaps
         {
             for (int i = myEmp.Length / 2; i >= 0; i--)
             {
-                Max_Heapify(myEmp, i);
+                Max_Heapify(myEmp, i, myEmp.Length);
             }
             return myEmp;
         }
@@ -69,6 +70,20 @@ namespace Heaps
         public Employee Extract_Max()
         {
             return this._Data.EmployeeList[0];
+        }
+
+        public T HeapSort()
+        {
+            int count = 0;
+            while (count < this._Data.Length - 1)
+            {
+                var temp = this._Data[(this._Data.Length - (count + 1))];
+                this._Data[(this._Data.Length - (count + 1))] = this._Data[0];
+                this._Data[0] = temp;
+                Max_Heapify(this._Data, 0,(this._Data.Length - (count+1)));
+                count += 1;
+            }
+            return this._Data;
         }
     }
 }

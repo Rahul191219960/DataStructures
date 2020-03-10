@@ -8,6 +8,29 @@ namespace EmployeeN
         public int EmpId { get; set; }
         public string EmployeeName { get; set; }
 
+        public Employee(int id, string name)
+        {
+            this.EmployeeName = name;
+            this.EmpId = id;
+        }
+        public Employee()
+        {
+            
+        }
+
+        public static bool operator ==(Employee e1, Employee e2)
+        {
+            if (e1.EmpId == e2.EmpId && e1.EmployeeName == e2.EmployeeName)
+                return true;
+            return false;
+        }
+
+        public static bool operator !=(Employee e1, Employee e2)
+        {
+            if (e1.EmpId != e2.EmpId || e1.EmployeeName != e2.EmployeeName)
+                return true;
+            return false;
+        }
         public static bool operator <(Employee e1, Employee e2)
         {
             if (e1.EmpId < e2.EmpId)

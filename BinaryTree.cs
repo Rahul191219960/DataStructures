@@ -115,5 +115,27 @@ namespace DataStructures
                 return false;
             }
         }
+
+        public T GetMinimum()
+        {
+            BinaryTree<T> current = GetRoot();
+            while (true)
+            {
+                if (current.Left == null)
+                    return current.data;
+                current = current.Left;
+            }
+        }
+
+        public T GetMaximum()
+        {
+            BinaryTree<T> current = GetRoot();
+            while (true)
+            {
+                if (current.Right == null)
+                    return current.data;
+                current = current.Right;
+            }
+        }
     }
 }

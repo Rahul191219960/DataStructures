@@ -33,6 +33,8 @@ namespace DataStructures
             bst.AddChild(employees[3]);
             bst.AddChild(employees[1]);
             bst.AddChild(employees[2]);
+            bst.AddChild(new Employee(0, "Rahul"));
+            bst.AddChild(new Employee(100, "Rahul"));
 
             bool isPresent = bst.Search(employees[1]);
             bool isPr = bst.Search(new Employee(0, "Rahul"));
@@ -48,6 +50,9 @@ namespace DataStructures
             x = bst.GetParent(employees[3]);
             x = bst.GetParent(employees[1]);
             x = bst.GetParent(employees[2]);
+
+            var m = bst.GetMinimum();
+            m = bst.GetMaximum();
         }
     }
 }
